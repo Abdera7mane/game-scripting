@@ -1,1 +1,1 @@
-# game-scrpting
+# game-scripting
