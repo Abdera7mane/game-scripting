@@ -1,23 +1,27 @@
 extends Node
 
-signal onCommand
-signal onEvent
-
-var methods: Dictionary = {
-	'onCommand': '_onCommand'
-}
+func _ready() -> void:
+	#register the events in the scene tree
+	for event in get_events():
+		get_tree().add_user_signal(event)
 
 func emit_signal(signal_name: String, target: Object = null, args: Array = []) -> void:
-	var method: String = methods.get(signal_name)
+
+	var method: String = get_events().get(signal_name)
+	var event: GameEvent = new_event(signal_name)
+	var signal_args: Array = [event] + args
+
 	if method == null or target == null:
 		return
-	var event = new_event(signal_name)
-	var signal_args: Array = [event] + args
-	.emit_signal(signal_name, signal_args)
-	if target.has_method(method):
-		connect(signal_name, target, method, signal_args)
-		.emit_signal(signal_name)
-		disconnect(signal_name, target, method)
+
+	get_tree().emit_signal(signal_name, signal_args)
+	if target.has_method(method) && !event.is_cancelled():
+		target.callv(method, signal_args)
+
+static func get_events() -> Dictionary:
+	return {
+	'onCommand': '_onCommand'
+	}
 
 func new_event(name: String) -> GameEvent:
 	var event: GameEvent = GameEvent.new(name)

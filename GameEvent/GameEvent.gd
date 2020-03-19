@@ -3,14 +3,15 @@ extends Object
 class_name GameEvent
 
 var name: String
-var state: bool setget set_state, get_state
+var cancelled: bool setget set_cancelled, is_cancelled
 
+# warning-ignore:shadowed_variable
 func _init(name: String, state: bool = false) -> void:
 	self.name = name
-	self.state = state
+	self.cancelled = state
 
-func set_state(value: bool) -> void:
-	state = value
+func set_cancelled(value: bool) -> void:
+	cancelled = value
 
-func get_state() -> bool:
-	return state
+func is_cancelled() -> bool:
+	return cancelled
