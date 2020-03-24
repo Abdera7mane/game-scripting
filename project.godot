@@ -9,7 +9,17 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Object",
+"base": "Resource",
+"class": "Command",
+"language": "GDScript",
+"path": "res://Commands/Command.gd"
+}, {
+"base": "Node",
+"class": "CommandMap",
+"language": "GDScript",
+"path": "res://Commands/CommandMap.gd"
+}, {
+"base": "Resource",
 "class": "GameEvent",
 "language": "GDScript",
 "path": "res://GameEvent/GameEvent.gd"
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://GameScript/GameScript.gd"
 } ]
 _global_script_class_icons={
+"Command": "",
+"CommandMap": "",
 "GameEvent": "",
 "GameScript": ""
 }
@@ -33,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Console="*res://AutoLoad/console/Console.tscn"
+DefaultCommandMap="*res://Commands/CommandMap.gd"
 
 [input]
 
