@@ -13,8 +13,7 @@ func emit_signal(signal_name: String, target: Object = null, args: Array = []) -
 
 	if method == null or target == null:
 		return
-
-	get_tree().emit_signal(signal_name, signal_args)
+	get_tree().callv("emit_signal", [signal_name] + signal_args)
 	if target.has_method(method) && !event.is_cancelled():
 		target.callv(method, signal_args)
 

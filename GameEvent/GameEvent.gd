@@ -1,6 +1,5 @@
-extends Object
-
 class_name GameEvent
+extends Resource
 
 var name: String
 var cancelled: bool setget set_cancelled, is_cancelled
