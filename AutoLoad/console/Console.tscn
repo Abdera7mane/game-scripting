@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://AutoLoad/console/CommandLine.gd" type="Script" id=1]
+[ext_resource path="res://AutoLoad/console/Console.gd" type="Script" id=2]
+
+[node name="Console" type="WindowDialog"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+focus_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+popup_exclusive = true
+window_title = "Console"
+resizable = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="View" type="VSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = -25
+collapsed = true
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="View"]
+margin_right = 1024.0
+margin_bottom = 564.0
+focus_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 15
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="View/MarginContainer"]
+margin_left = 10.0
+margin_top = 15.0
+margin_right = 1014.0
+margin_bottom = 564.0
+focus_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="View/MarginContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 2
+custom_constants/line_separation = 5
+bbcode_enabled = true
+scroll_following = true
+selection_enabled = true
+override_selected_font_color = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="View"]
+margin_top = 576.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="CommandLine" type="LineEdit" parent="View/MarginContainer2"]
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "run a command"
+placeholder_alpha = 0.4
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 1 )
+[connection signal="gui_input" from="View/MarginContainer2/CommandLine" to="View/MarginContainer2/CommandLine" method="_on_CommandLine_gui_input"]
