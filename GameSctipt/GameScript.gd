@@ -36,7 +36,7 @@ func _handle_events(enable: bool) -> void:
 	if enable:
 		for event in methods:
 			var method: String = methods.get(event)
-			if has_method(method):
+			if has_method(method) and !is_connected(event, get_tree(), method):
 				get_tree().call_deferred("connect", event, self, method)
 	else:
 		for event in methods:
